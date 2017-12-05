@@ -111,3 +111,19 @@ def CountWithPseudocounts(Motifs):
             symbol = Motifs[i][j]
             count[symbol][j] += 1
     return count
+
+def ProfileWithPseudocounts(Motifs):
+    profile = {}
+    t = len(Motifs)
+    k = len(Motifs[0])
+    CountMotifs = CountWithPseudocounts(Motifs)
+
+    for symbol in "ACGT":
+        profile[symbol] = []
+
+    for x in CountMotifs:
+        for y in CountMotifs[x]:
+            z = y/float(t+4)
+            profile[x].append(z)
+
+    return profile
